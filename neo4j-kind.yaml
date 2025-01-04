@@ -1,0 +1,61 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: neo4j-cluster
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 7474
+        hostPort: 7474
+        protocol: TCP
+      - containerPort: 7473
+        hostPort: 7473
+        protocol: TCP
+      - containerPort: 7687
+        hostPort: 7687
+        protocol: TCP
+      - containerPort: 6362
+        hostPort: 6362
+        protocol: TCP
+      - containerPort: 7479
+        hostPort: 7479
+        protocol: TCP
+      - containerPort: 7688
+        hostPort: 7688
+        protocol: TCP
+      - containerPort: 5000
+        hostPort: 5000
+        protocol: TCP
+      - containerPort: 5001
+        hostPort: 5001
+        protocol: TCP
+      - containerPort: 5002
+        hostPort: 5002
+        protocol: TCP
+      - containerPort: 5003
+        hostPort: 5003
+        protocol: TCP
+      - containerPort: 5004
+        hostPort: 5004
+        protocol: TCP
+      - containerPort: 5005
+        hostPort: 5005
+        protocol: TCP
+      - containerPort: 5006
+        hostPort: 5006
+        protocol: TCP
+      - containerPort: 5007
+        hostPort: 5007
+        protocol: TCP
+      - containerPort: 5008
+        hostPort: 5008
+        protocol: TCP
+      - containerPort: 5009
+        hostPort: 5009
+        protocol: TCP
+      - containerPort: 5010
+        hostPort: 5010
+        protocol: TCP
+
+  - role: worker
+  - role: worker
+  - role: worker

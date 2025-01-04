@@ -1,0 +1,4 @@
+1. Helm lookups can be disabled for using argocd. 
+2. Need to find a way to pass the secrets to neo4j declaratively.
+3. Consider using sealedSecrets for better security.
+4. Neo4j helm chart allows to use custom images.
