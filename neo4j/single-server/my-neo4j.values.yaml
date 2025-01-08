@@ -1,3 +1,6 @@
+
+disableLookups: true
+
 neo4j:
   name: my-standalone
   resources:
@@ -5,7 +8,7 @@ neo4j:
     memory: "2Gi"
 
   # Uncomment to set the initial password
-  password: "my-password"
+  password: "ilyabo9649"
 
   # Uncomment to use enterprise edition
   edition: "enterprise"
@@ -18,11 +21,52 @@ volumes:
       requests:
         storage: 2Gi
 
+services:
+  neo4j:  
+    enabled: false
+
 ssl:
+# setting per "connector" matching neo4j config
   bolt:
     privateKey:
-      secretName: bolt-cert
-      subPath: private.key
+      secretName: neo4j-tls
+      subPath: tls.key
     publicCertificate:
-      secretName: bolt-cert
-      subPath: public.crt
+      secretName: neo4j-tls
+      subPath: tls.crt
+  https:
+    privateKey:
+      secretName: neo4j-tls
+      subPath: tls.key
+    publicCertificate:
+      secretName: neo4j-tls
+      subPath: tls.crt
+    trustedCerts:
+      sources:
+      - secret:
+          name: neo4j-tls
+          items:
+          - key: tls.crt
+            path: public.crt
+  cluster:
+    privateKey:
+      secretName: neo4j-tls
+      subPath: tls.key
+    publicCertificate:
+      secretName: neo4j-tls
+      subPath: tls.crt
+    trustedCerts:
+      sources:
+      - secret:
+          name: neo4j-tls
+          items:
+          - key: tls.crt
+            path: public.crt
+    revokedCerts:
+      sources: [ ]
+
+
+config:
+  server.http.enabled: "true"
+  server.https.enabled: "true"
+  

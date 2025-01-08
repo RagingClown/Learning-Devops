@@ -2,3 +2,4 @@
 2. Need to find a way to pass the secrets to neo4j declaratively.
 3. Consider using sealedSecrets for better security.
 4. Neo4j helm chart allows to use custom images.
+5. under the neo4j helm customize section, a lot of good info. Might you that as a template and that's it.
