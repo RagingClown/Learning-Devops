@@ -1,0 +1,28 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30000  # Grafana
+        hostPort: 3000
+        protocol: TCP
+      - containerPort: 31090  # Prometheus
+        hostPort: 9090
+        protocol: TCP
+      - containerPort: 30903  # Alertmanager
+        hostPort: 9093
+        protocol: TCP
+      - containerPort: 31000  # node-exporter
+        hostPort: 9100
+        protocol: TCP
+      - containerPort: 31001  # kubelet
+        hostPort: 10250
+        protocol: TCP
+  - role: worker
+    extraPortMappings:
+      - containerPort: 31000  # node-exporter
+        hostPort: 9101
+        protocol: TCP
+      - containerPort: 31001  # kubelet
+        hostPort: 10251
+        protocol: TCP
