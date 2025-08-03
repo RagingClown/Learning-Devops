@@ -15,7 +15,8 @@ Get Grafana 'admin' user password by running:
 
 Access Grafana local instance:
 
-  export POD_NAME=$(kubectl --namespace monitoring get pod -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=prometheus" -oname)
-  kubectl --namespace monitoring port-forward $POD_NAME 3000
+export POD_NAME=$(kubectl --namespace monitoring get pod -l "app.kubernetes.io/name=grafana,app.kubernet
+s.io/instance=prometheus" -oname)
+kubectl --namespace monitoring port-forward $POD_NAME 3000
 
 Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.

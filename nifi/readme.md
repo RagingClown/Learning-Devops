@@ -8,4 +8,6 @@ Directives:
 2. Disaster Recovery. Pr,obably active-passive
 
 
-I think the best version would be 
+---
+
+

@@ -1,0 +1,29 @@
+# simplenifi-cluster.yaml
+apiVersion: nifi.konpyutaika.com/v1
+kind: NifiCluster
+metadata:
+  name: simplenifi
+  namespace: nifi
+spec:
+  # Use KubernetesLeaderElectionManager for clustering
+  clusterManager: kubernetes
+
+  # NiFi image
+  clusterImage: "apache/nifi:2.5.0"
+
+  # Turn on a headless svc for intra-cluster communication
+  service:
+    headlessEnabled: true
+
+  # 3 NiFi nodes
+  nodes:
+    - id: 1
+    - id: 2
+    - id: 3
+
+  # Expose HTTP on 8080
+  listenersConfig:
+    internalListeners:
+      - name: http
+        containerPort: 8080
+        type: http

@@ -31,3 +31,28 @@ just following the guide there — really easy!
 https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack
 
 A nice way to play with the dashboards and edit them to suit your teams need.
+
+
+---
+
+root@ubuntu-HP-Elite-SFF-800-G9-Desktop-PC:/home/ubuntu/Desktop/Learning-Devops/prometheus-stack# helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
+
+NAME: prometheus
+LAST DEPLOYED: Thu Jul 31 12:48:59 2025
+NAMESPACE: monitoring
+STATUS: deployed
+REVISION: 1
+NOTES:
+kube-prometheus-stack has been installed. Check its status by running:
+  kubectl --namespace monitoring get pods -l "release=prometheus"
+
+Get Grafana 'admin' user password by running:
+
+  kubectl --namespace monitoring get secrets prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+
+Access Grafana local instance:
+
+  export POD_NAME=$(kubectl --namespace monitoring get pod -l "app.kubernetes.io/name=grafana,app.kubernetes.io/instance=prometheus" -oname)
+  kubectl --namespace monitoring port-forward $POD_NAME 3000
+
+Visit https://github.com/prometheus-operator/kube-prometheus for instructions on how to create & configure Alertmanager and Prometheus instances using the Operator.
